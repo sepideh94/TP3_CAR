@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TP3 - Akka</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            background-color: #ccc;
+            color: black;
+            border: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+<body>
+    <h1>TP3 - Akka</h1>
+    
+    <p>Initialisation des acteurs Akka</p>
+    <button onclick="initActors()">Init</button>
+
+    <script>
+        function initActors() {
+            fetch('/akka/init', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => console.log(data))
+                .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</body>
+</html>
