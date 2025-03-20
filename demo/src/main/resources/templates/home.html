@@ -3,40 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>TP3 - Akka</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        button {
-            background-color: #ccc;
-            color: black;
-            border: none;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #bbb;
-        }
-    </style>
 </head>
 <body>
-    <h1>TP3 - Akka</h1>
-    
-    <p>Initialisation des acteurs Akka</p>
-    <button onclick="initActors()">Init</button>
 
-    <script>
-        function initActors() {
-            fetch('/akka/init', { method: 'POST' })
-                .then(response => response.text())
-                .then(data => console.log(data))
-                .catch(error => console.error('Erreur:', error));
-        }
-    </script>
+    <h1>TP3 - Akka</h1>
+
+    <h2>Initialisation des acteurs Akka</h2>
+    <form action="/akka/init" method="post">
+        <button type="submit">Init</button>
+    </form>
+
+    <h2>Fichier à Analyser</h2>
+    <form action="/akka/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Envoyer</button>
+    </form>
+
+    <h2>Rechercher un mot</h2>
+    <form action="/akka/search" method="get">
+        <input type="text" name="word" required placeholder="Entrez un mot">
+        <button type="submit">Rechercher</button>
+    </form>
+
+    <!-- Résultat de la recherche -->
+    <div th:if="${searchedWord}">
+        <h3>Résultat pour "<span th:text="${searchedWord}"></span>" :</h3>
+        <p>Occurrences : <span th:text="${occurrence}"></span></p>
+    </div>
+
 </body>
 </html>
